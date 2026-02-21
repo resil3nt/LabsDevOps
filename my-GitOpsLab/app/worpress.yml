@@ -1,17 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: root-app
+  name: lab-wordpress
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://github.com/resil3nt/LabsDevOps.git
-    targetRevision: main
-    path: my-GitOpsdLab/app # <--- Vigilar la carpeta 'apps'
+    targetRevision: HEAD
+    path: wordpress
   destination:
     server: https://kubernetes.default.svc
-    namespace: argocd
+    namespace: default
   syncPolicy:
     automated:
       prune: true
