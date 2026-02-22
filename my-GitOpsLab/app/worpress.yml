@@ -6,9 +6,10 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/resil3nt/LabsDevOps.git
+    # Cambiamos tu repo por el de ejemplos oficiales de ArgoCD
+    repoURL: https://github.com/argoproj/argocd-example-apps.git
     targetRevision: HEAD
-    path: wordpress
+    path: wordpress # Esta carpeta SÍ existe en este repo
   destination:
     server: https://kubernetes.default.svc
     namespace: default
