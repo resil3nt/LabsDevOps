@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/resil3nt/LabsDevOps.git
     targetRevision: main
-    path: my-GitOpsdLab/app # <--- Vigilar la carpeta 'apps'
+    path: my-GitOpsLab/app/ # <--- Vigilar la carpeta 'app'
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
