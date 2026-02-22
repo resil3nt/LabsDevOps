@@ -8,16 +8,23 @@ spec:
   source:
     repoURL: https://prometheus-community.github.io/helm-charts
     chart: kube-prometheus-stack
-    targetRevision: 45.0.0 # Versión estable
+    targetRevision: 45.0.0
     helm:
       values: |
         grafana:
-          adminPassword: admin # Cambia esto luego
+          adminPassword: admin
+        # Esto desactiva la validación de admission webhooks que te dio guerra antes
+        prometheusOperator:
+          admissionWebhooks:
+            enabled: false
   destination:
     server: https://kubernetes.default.svc
-    namespace: monitoring # Lo instalaremos en su propio namespace
+    namespace: monitoring
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
-    createNamespace: true # ArgoCD creará el namespace 'monitoring' por ti
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true  # <--- ESTO SOLUCIONA EL ERROR "TOO LONG"
+      - Replace=true           # <--- ESTO AYUDA A REESCRIBIR LOS CRDs GRANDES
